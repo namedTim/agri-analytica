@@ -10,6 +10,9 @@ namespace AspnetCoreFull.Pages.Auth.Login
   }
   public class CoverModel : PageModel
   {
-    public void OnGet() { }
+    public void OnGet()
+    {
+      Response.Redirect("../../Dashboards/Analytics");
+    }
   }
 }
