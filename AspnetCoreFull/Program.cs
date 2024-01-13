@@ -1,11 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using AspnetCoreFull.Data;
+using AspnetCoreFull.Models;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<SchoolContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolContext") ?? throw new InvalidOperationException("Connection string 'SchoolContext' not found.")));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+  .AddEntityFrameworkStores<SchoolContext>()
+  .AddDefaultTokenProviders();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // !
@@ -25,7 +32,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 // create db if it doesn't exist
-/*
+
 using (var scope = app.Services.CreateScope())
 {
   var services = scope.ServiceProvider;
@@ -33,7 +40,7 @@ using (var scope = app.Services.CreateScope())
   var context = services.GetRequiredService<SchoolContext>();
   context.Database.EnsureCreated();
   DbInitializer.Initialize(context);
-}*/
+}
 
 // !
 

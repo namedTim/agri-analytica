@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AspnetCoreFull.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AspnetCoreFull.Data
 {
-    public class SchoolContext : DbContext
+    public class SchoolContext : IdentityDbContext<ApplicationUser>
     {
         public SchoolContext (DbContextOptions<SchoolContext> options)
             : base(options)
