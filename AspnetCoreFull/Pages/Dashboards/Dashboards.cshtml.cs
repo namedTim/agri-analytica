@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspnetCoreFull.Pages.Dashboards
 {
+  [Authorize]
   public class AnalyticsModel : PageModel
   {
     public void OnGet() { }

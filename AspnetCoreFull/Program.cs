@@ -1,21 +1,29 @@
-using Microsoft.EntityFrameworkCore;
 using AspnetCoreFull.Data;
-using AspnetCoreFull.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<SchoolContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolContext") ?? throw new InvalidOperationException("Connection string 'SchoolContext' not found.")));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-  .AddEntityFrameworkStores<SchoolContext>()
-  .AddDefaultTokenProviders();
+// Configure DbContext
+builder.Services.AddDbContext<AnalyticaContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("AnalyticaContext") ??
+                       throw new InvalidOperationException("Connection string 'AnalyticaContext' not found.")));
 
+// Configure Identity
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+  .AddEntityFrameworkStores<AnalyticaContext>();
+
+// Configure login path
+builder.Services.ConfigureApplicationCookie(options =>
+{
+  options.LoginPath = "/Auth/Login/Cover";
+});
+
+// Add developer exception page filter for database-related exceptions
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-// !
 
 var app = builder.Build();
 
@@ -23,32 +31,21 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
   app.UseExceptionHandler("/Error");
-  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
   app.UseHsts();
-}else
+}
+else
 {
   app.UseDeveloperExceptionPage();
   app.UseMigrationsEndPoint();
 }
-
-// create db if it doesn't exist
-
-using (var scope = app.Services.CreateScope())
-{
-  var services = scope.ServiceProvider;
-
-  var context = services.GetRequiredService<SchoolContext>();
-  context.Database.EnsureCreated();
-  DbInitializer.Initialize(context);
-}
-
-// !
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+// IMPORTANT: Ensure UseAuthentication is called before UseAuthorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
