@@ -16,7 +16,10 @@ public class ApiController : ControllerBase
     _context = context;
   }
 
-  // Test API endpoint
+  /// <summary>
+  /// Void function to test the API
+  /// </summary>
+  /// <returns></returns>
   [HttpGet("Test")]
   public IActionResult TestApi()
   {

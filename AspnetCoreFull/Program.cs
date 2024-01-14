@@ -25,6 +25,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Add developer exception page filter for database-related exceptions
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// pred var app = builder.Build();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,6 +44,13 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+// spodnje pred UseRouting
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+  c.SwaggerEndpoint("/swagger/v1/swagger.json", "Agri-analytica API v1");
+});
 
 app.UseRouting();
 
