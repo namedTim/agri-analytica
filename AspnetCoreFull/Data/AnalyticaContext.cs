@@ -121,7 +121,25 @@ namespace AspnetCoreFull.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("User");
+              entity.ToTable("User");
+
+              entity.Property(e => e.AspUserId).HasMaxLength(450);
+
+              entity.Property(e => e.DateCreated).HasColumnType("datetime");
+
+              entity.Property(e => e.Email)
+                .HasMaxLength(1)
+                .IsUnicode(false);
+
+              entity.Property(e => e.Name)
+                .HasMaxLength(1)
+                .IsUnicode(false);
+
+              entity.Property(e => e.Password).HasMaxLength(450);
+
+              entity.Property(e => e.Surname)
+                .HasMaxLength(1)
+                .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

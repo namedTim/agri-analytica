@@ -54,15 +54,15 @@ app.UseSwaggerUI(c =>
 
 app.UseRouting();
 
+// IMPORTANT: Ensure UseAuthentication is called before UseAuthorization
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseEndpoints(endpoints =>
 {
   endpoints.MapControllers(); // Maps routes to controllers
   // For MVC or Razor Pages, you might also have endpoints.MapRazorPages();
 });
-
-// IMPORTANT: Ensure UseAuthentication is called before UseAuthorization
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapRazorPages();
 

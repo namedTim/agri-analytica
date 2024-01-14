@@ -14,8 +14,9 @@ namespace AspnetCoreFull.Models
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? Email { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
         public string? Password { get; set; }
+        public string? AspUserId { get; set; }
 
         public virtual ICollection<AgriSectorType> Ids { get; set; }
     }
