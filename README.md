@@ -32,6 +32,19 @@ Arhitektura sistema bo modularna, kar pomeni, da bo vsaka komponenta zmožna del
 
 Sistem bo zasnovan tako, da bo podpiral rast in spremembe v kmetijskih dejavnostih, kar bo uporabnikom zagotovilo dolgoročno vrednost in bo upravičilo investicijo v informacijsko tehnologijo.
 
+## 2 Izdelava
+
+Aplikacija podpira beleženje podatkov o živalih in njihovi statistiki. Podprt je del živinoreje iz idejne izdelave aplikacije.
+
+### 2.1 Spletna aplikacija
+
+
+### 2.2 Baza
+![slika](https://github.com/namedTim/agri-analytica/assets/46692491/c4fc450c-44b7-4552-8631-c8af55a8aec2)
+
+Zraven spadajo še interne tabele za prijavo preko Identity.
+
+
 ---
 
 Avtor: Timotej Robavs
