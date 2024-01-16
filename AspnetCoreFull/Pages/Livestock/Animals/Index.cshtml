@@ -1,0 +1,90 @@
+@page
+@model AspnetCoreFull.Pages.Livestock.Animals.IndexModel
+
+@{
+    ViewData["Title"] = "Animals";
+}
+
+<h1>Animals</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+              @Html.DisplayNameFor(model => model.Animal[0].EarTag)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.Animal[0].AnimalType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Birth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].BoughtPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].SoldPrice)
+            </th>
+            @* <th> *@
+            @*      @Html.DisplayNameFor(model => model.Animal[0].ParentFemaleId) *@
+            @*  </th> *@
+            @*  <th> *@
+            @*      @Html.DisplayNameFor(model => model.Animal[0].ParentMaleId) *@
+            @*  </th> *@
+            <th>
+              @Html.DisplayNameFor(model => model.Animal[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Death)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Animal) {
+        <tr>
+            <td>
+              @Html.DisplayFor(modelItem => item.EarTag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnimalType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoughtPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoldPrice)
+            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.ParentFemaleId) *@
+            @* </td> *@
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.ParentMaleId) *@
+            @* </td> *@
+            <td>
+              @Html.DisplayFor(modelItem => item.Gender.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Death)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

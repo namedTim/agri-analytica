@@ -1,0 +1,74 @@
+@page
+@model AspnetCoreFull.Pages.Livestock.Animals.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Animal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Animal.EarTag" class="control-label"></label>
+                <input asp-for="Animal.EarTag" class="form-control" />
+                <span asp-validation-for="Animal.EarTag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.Birth" class="control-label"></label>
+                <input asp-for="Animal.Birth" class="form-control" />
+                <span asp-validation-for="Animal.Birth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.Death" class="control-label"></label>
+                <input asp-for="Animal.Death" class="form-control" />
+                <span asp-validation-for="Animal.Death" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.Description" class="control-label"></label>
+                <input asp-for="Animal.Description" class="form-control" />
+                <span asp-validation-for="Animal.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.BoughtPrice" class="control-label"></label>
+                <input asp-for="Animal.BoughtPrice" class="form-control" />
+                <span asp-validation-for="Animal.BoughtPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.SoldPrice" class="control-label"></label>
+                <input asp-for="Animal.SoldPrice" class="form-control" />
+                <span asp-validation-for="Animal.SoldPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.AnimalTypeId" class="control-label"></label>
+                <select asp-for="Animal.AnimalTypeId" class ="form-control" asp-items="ViewBag.AnimalTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.GenderId" class="control-label"></label>
+                <select asp-for="Animal.GenderId" class ="form-control" asp-items="ViewBag.GenderId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.ParentFemaleId" class="control-label"></label>
+                <input asp-for="Animal.ParentFemaleId" class="form-control" />
+                <span asp-validation-for="Animal.ParentFemaleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animal.ParentMaleId" class="control-label"></label>
+                <input asp-for="Animal.ParentMaleId" class="form-control" />
+                <span asp-validation-for="Animal.ParentMaleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

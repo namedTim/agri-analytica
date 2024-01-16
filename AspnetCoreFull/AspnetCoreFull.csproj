@@ -34,4 +34,8 @@
     <_ContentIncludedByDefault Remove="Analytica.Web\obj\project.packagespec.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Pages\Livestock\Stupid.cshtml.cs" />
+  </ItemGroup>
+
 </Project>
