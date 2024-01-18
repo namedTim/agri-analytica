@@ -23,11 +23,13 @@ namespace AspnetCoreFull.Pages.Livestock.Animals.Progress
 
         public async Task OnGetAsync()
         {
-            if (_context.AnimalProgresses != null)
-            {
-                AnimalProgress = await _context.AnimalProgresses
-                .Include(a => a.AnimalProgressType).ToListAsync();
-            }
+          if (_context.AnimalProgresses != null)
+          {
+            AnimalProgress = await _context.AnimalProgresses
+              .Include(ap => ap.Animal) // Include the Animal entity
+              .Include(ap => ap.AnimalProgressType) // Include the AnimalProgressType
+                                                    .ToListAsync();
+          }
         }
     }
 }

@@ -19,6 +19,9 @@ namespace AspnetCoreFull.Pages.Livestock.Animals.Progress
         private readonly AspnetCoreFull.Data.AnalyticaContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
+        [BindProperty(SupportsGet = true)]
+        public int? Id { get; set; }
+
         public CreateModel(AspnetCoreFull.Data.AnalyticaContext context, AnimalService animalService, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -26,23 +29,29 @@ namespace AspnetCoreFull.Pages.Livestock.Animals.Progress
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGetAsync(int? animalId)
         {
-        ViewData["AnimalProgressTypeId"] = new SelectList(
-          await _context.AnimalProgressTypes
-            .Select(ap => new
-            {
-              Id = ap.Id,
-              Description = ap.Name + " | " + ap.Description
-            }).ToListAsync(),
-          "Id",
-          "Description");
+          ViewData["AnimalProgressTypeId"] = new SelectList(
+            await _context.AnimalProgressTypes
+              .Select(ap => new
+              {
+                Id = ap.Id,
+                Description = ap.Name + " | " + ap.Description
+              }).ToListAsync(),
+            "Id",
+            "Description");
 
-        var user = await _userManager.GetUserAsync(User);
-        var animals = await _animalService.GetAnimalsForUser(user.Id);
-        ViewData["Animals"] = new SelectList(animals, "Id", "EarTag");
+          var user = await _userManager.GetUserAsync(User);
+          var animals = await _animalService.GetAnimalsForUser(user.Id);
 
-        return Page();
+          if (Id.HasValue)
+          {
+            animals = animals.Where(a => a.Id == 1).ToList();
+          }
+
+          ViewData["Animals"] = new SelectList(animals, "Id", "EarTag", ViewData["SelectedAnimalId"]);
+
+          return Page();
         }
 
         [BindProperty]
