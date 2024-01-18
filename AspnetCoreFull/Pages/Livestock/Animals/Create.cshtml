@@ -5,14 +5,17 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Animal</h4>
+<h4>Animal entry</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Animal.AgriSectorId" class="control-label">Sector</label>
+                <select asp-for="Animal.AgriSectorId" class ="form-control" asp-items="ViewBag.AgriSectorId"></select>
+            </div>
             <div class="form-group">
                 <label asp-for="Animal.EarTag" class="control-label"></label>
                 <input asp-for="Animal.EarTag" class="form-control" />
@@ -52,14 +55,12 @@
                 <select asp-for="Animal.GenderId" class ="form-control" asp-items="ViewBag.GenderId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Animal.ParentFemaleId" class="control-label"></label>
-                <input asp-for="Animal.ParentFemaleId" class="form-control" />
-                <span asp-validation-for="Animal.ParentFemaleId" class="text-danger"></span>
+              <label asp-for="Animal.ParentFemaleId" class="control-label">F Parent EarTag</label>
+              <select asp-for="Animal.ParentFemaleId" class="form-control" asp-items="ViewBag.ParentFemaleId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Animal.ParentMaleId" class="control-label"></label>
-                <input asp-for="Animal.ParentMaleId" class="form-control" />
-                <span asp-validation-for="Animal.ParentMaleId" class="text-danger"></span>
+                <label asp-for="Animal.ParentMaleId" class="control-label">M Parent EarTag</label>
+              <select asp-for="Animal.ParentMaleId" class="form-control" asp-items="ViewBag.ParentMaleId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
