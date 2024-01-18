@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AspnetCoreFull.Data;
 using AspnetCoreFull.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace AspnetCoreFull.Pages.Auth.Register
   {
     public void OnGet() { }
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly AnalyticaContext _context;
 
-    public CoverModel(UserManager<IdentityUser> userManager)
+    public CoverModel(UserManager<IdentityUser> userManager, AnalyticaContext context)
     {
       _userManager = userManager;
+      _context = context;
     }
 
     [BindProperty]
@@ -54,7 +57,11 @@ namespace AspnetCoreFull.Pages.Auth.Register
         if (result.Succeeded)
         {
           // User creation logic here (e.g., sign-in the user)
-          return RedirectToPage("../Register/Cover");
+          var userId = await _userManager.GetUserIdAsync(user);
+
+          await ExtendUserReach(userId);
+
+          return RedirectToPage("../Login/Cover");
         }
         foreach (var error in result.Errors)
         {
@@ -64,6 +71,24 @@ namespace AspnetCoreFull.Pages.Auth.Register
 
       // If we got this far, something failed, redisplay form
       return Page();
+    }
+
+    private async Task ExtendUserReach(string userId)
+    {
+      var usr = new User()
+      {
+        AspUserId = userId
+      };
+      var result = await _context.Users.AddAsync(usr);
+      var fld = new AgriSectorType()
+      {
+        AspUserId = userId,
+        Name = "Živinoreja",
+      };
+
+      await _context.AgriSectorTypes.AddAsync(fld);
+      //Save changes to the db
+      await _context.SaveChangesAsync();
     }
   }
   public class MultiStepsModel : PageModel

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using AspnetCoreFull.Data;
 using AspnetCoreFull.Models;
 
-namespace AspnetCoreFull.Pages.Livestock.Animals
+namespace AspnetCoreFull.Pages.Livestock.Animals.Progress
 {
     public class EditModel : PageModel
     {
@@ -21,23 +21,22 @@ namespace AspnetCoreFull.Pages.Livestock.Animals
         }
 
         [BindProperty]
-        public Animal Animal { get; set; } = default!;
+        public AnimalProgress AnimalProgress { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Animals == null)
+            if (id == null || _context.AnimalProgresses == null)
             {
                 return NotFound();
             }
 
-            var animal =  await _context.Animals.FirstOrDefaultAsync(m => m.Id == id);
-            if (animal == null)
+            var animalprogress =  await _context.AnimalProgresses.FirstOrDefaultAsync(m => m.Id == id);
+            if (animalprogress == null)
             {
                 return NotFound();
             }
-            Animal = animal;
-           ViewData["AnimalTypeId"] = new SelectList(_context.AnimalTypes, "Id", "Id");
-           ViewData["GenderId"] = new SelectList(_context.Genders, "Id", "Id");
+            AnimalProgress = animalprogress;
+           ViewData["AnimalProgressTypeId"] = new SelectList(_context.AnimalProgressTypes, "Id", "Id");
             return Page();
         }
 
@@ -45,17 +44,12 @@ namespace AspnetCoreFull.Pages.Livestock.Animals
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-          Animal.Gender = await _context.Genders.FindAsync(Animal.GenderId);
-          Animal.AnimalType = await _context.AnimalTypes.FindAsync(Animal.AnimalTypeId);
-          ModelState.Clear();
-          TryValidateModel(Animal);
-
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Animal).State = EntityState.Modified;
+            _context.Attach(AnimalProgress).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +57,7 @@ namespace AspnetCoreFull.Pages.Livestock.Animals
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AnimalExists(Animal.Id))
+                if (!AnimalProgressExists(AnimalProgress.Id))
                 {
                     return NotFound();
                 }
@@ -76,9 +70,9 @@ namespace AspnetCoreFull.Pages.Livestock.Animals
             return RedirectToPage("./Index");
         }
 
-        private bool AnimalExists(int id)
+        private bool AnimalProgressExists(int id)
         {
-          return (_context.Animals?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.AnimalProgresses?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

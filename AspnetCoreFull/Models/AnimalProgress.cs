@@ -14,5 +14,6 @@ namespace AspnetCoreFull.Models
         public int AnimalAnimalTypeId { get; set; }
 
         public virtual AnimalProgressType AnimalProgressType { get; set; } = null!;
+        //public virtual Animal Animal { get; set; } = null!; // Navigation property
     }
 }

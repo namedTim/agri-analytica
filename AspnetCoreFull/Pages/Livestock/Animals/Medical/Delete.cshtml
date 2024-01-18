@@ -1,0 +1,58 @@
+@page
+@model AspnetCoreFull.Pages.Livestock.Animals.Medical.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AnimalMedicalHistory</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnimalMedicalHistory.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnimalMedicalHistory.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnimalMedicalHistory.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnimalMedicalHistory.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnimalMedicalHistory.AnimalId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnimalMedicalHistory.AnimalId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnimalMedicalHistory.AnimalAgriSectorId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnimalMedicalHistory.AnimalAgriSectorId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnimalMedicalHistory.AnimalAnimalTypeId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnimalMedicalHistory.AnimalAnimalTypeId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnimalMedicalHistory.AnimalMedicalCondtionType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnimalMedicalHistory.AnimalMedicalCondtionType.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="AnimalMedicalHistory.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

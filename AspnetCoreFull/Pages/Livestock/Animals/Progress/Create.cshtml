@@ -1,0 +1,45 @@
+@page
+@model AspnetCoreFull.Pages.Livestock.Animals.Progress.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AnimalProgress</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.Date" class="control-label"></label>
+                <input asp-for="AnimalProgress.Date" class="form-control" />
+                <span asp-validation-for="AnimalProgress.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.Value" class="control-label"></label>
+                <input asp-for="AnimalProgress.Value" class="form-control" />
+                <span asp-validation-for="AnimalProgress.Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.AnimalProgressTypeId" class="control-label"></label>
+                <select asp-for="AnimalProgress.AnimalProgressTypeId" class ="form-control" asp-items="ViewBag.AnimalProgressTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.AnimalId" class="control-label"></label>
+                <select asp-for="AnimalProgress.AnimalId" class="form-control" asp-items="ViewBag.Animals" ></select>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

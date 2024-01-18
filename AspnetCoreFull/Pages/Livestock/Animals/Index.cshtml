@@ -2,10 +2,10 @@
 @model AspnetCoreFull.Pages.Livestock.Animals.IndexModel
 
 @{
-    ViewData["Title"] = "Animals";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Animals</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -14,13 +14,16 @@
     <thead>
         <tr>
             <th>
-              @Html.DisplayNameFor(model => model.Animal[0].EarTag)
+                @Html.DisplayNameFor(model => model.Animal[0].AgriSectorId)
             </th>
             <th>
-              @Html.DisplayNameFor(model => model.Animal[0].AnimalType)
+                @Html.DisplayNameFor(model => model.Animal[0].EarTag)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Animal[0].Birth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Death)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Animal[0].Description)
@@ -31,17 +34,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.Animal[0].SoldPrice)
             </th>
-            @* <th> *@
-            @*      @Html.DisplayNameFor(model => model.Animal[0].ParentFemaleId) *@
-            @*  </th> *@
-            @*  <th> *@
-            @*      @Html.DisplayNameFor(model => model.Animal[0].ParentMaleId) *@
-            @*  </th> *@
             <th>
-              @Html.DisplayNameFor(model => model.Animal[0].Gender)
+                @Html.DisplayNameFor(model => model.Animal[0].ParentFemaleId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Animal[0].Death)
+                @Html.DisplayNameFor(model => model.Animal[0].ParentMaleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].AnimalType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Gender)
             </th>
             <th></th>
         </tr>
@@ -50,13 +53,16 @@
 @foreach (var item in Model.Animal) {
         <tr>
             <td>
-              @Html.DisplayFor(modelItem => item.EarTag)
+                @Html.DisplayFor(modelItem => item.AgriSectorId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AnimalType.Name)
+                @Html.DisplayFor(modelItem => item.EarTag)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Death)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -67,17 +73,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SoldPrice)
             </td>
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.ParentFemaleId) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.ParentMaleId) *@
-            @* </td> *@
             <td>
-              @Html.DisplayFor(modelItem => item.Gender.Name)
+                @Html.DisplayFor(modelItem => item.ParentFemaleId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Death)
+                @Html.DisplayFor(modelItem => item.ParentMaleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnimalType.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.Id)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

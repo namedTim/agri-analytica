@@ -1,4 +1,5 @@
 using AspnetCoreFull.Data;
+using AspnetCoreFull.Data.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
   options.LoginPath = "/Auth/Login/Cover";
 });
+
+// Add helper service
+builder.Services.AddScoped<AnimalService>();
 
 // Add developer exception page filter for database-related exceptions
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

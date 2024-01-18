@@ -38,4 +38,9 @@
     <Compile Remove="Pages\Livestock\Stupid.cshtml.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Livestock\Animals\Medical\" />
+    <Folder Include="Pages\Livestock\Animals\Progress\" />
+  </ItemGroup>
+
 </Project>

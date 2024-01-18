@@ -1,0 +1,57 @@
+@page
+@model AspnetCoreFull.Pages.Livestock.Animals.Progress.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>AnimalProgress</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AnimalProgress.Id" />
+            <div class="form-group">
+                <label asp-for="AnimalProgress.Date" class="control-label"></label>
+                <input asp-for="AnimalProgress.Date" class="form-control" />
+                <span asp-validation-for="AnimalProgress.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.Value" class="control-label"></label>
+                <input asp-for="AnimalProgress.Value" class="form-control" />
+                <span asp-validation-for="AnimalProgress.Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.AnimalProgressTypeId" class="control-label"></label>
+                <select asp-for="AnimalProgress.AnimalProgressTypeId" class="form-control" asp-items="ViewBag.AnimalProgressTypeId"></select>
+                <span asp-validation-for="AnimalProgress.AnimalProgressTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.AnimalId" class="control-label"></label>
+                <input asp-for="AnimalProgress.AnimalId" class="form-control" />
+                <span asp-validation-for="AnimalProgress.AnimalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.AnimalAgriSectorId" class="control-label"></label>
+                <input asp-for="AnimalProgress.AnimalAgriSectorId" class="form-control" />
+                <span asp-validation-for="AnimalProgress.AnimalAgriSectorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalProgress.AnimalAnimalTypeId" class="control-label"></label>
+                <input asp-for="AnimalProgress.AnimalAnimalTypeId" class="form-control" />
+                <span asp-validation-for="AnimalProgress.AnimalAnimalTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+

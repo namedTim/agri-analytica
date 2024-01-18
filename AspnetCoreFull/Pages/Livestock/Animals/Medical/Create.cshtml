@@ -1,0 +1,55 @@
+@page
+@model AspnetCoreFull.Pages.Livestock.Animals.Medical.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AnimalMedicalHistory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AnimalMedicalHistory.Price" class="control-label"></label>
+                <input asp-for="AnimalMedicalHistory.Price" class="form-control" />
+                <span asp-validation-for="AnimalMedicalHistory.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalMedicalHistory.Date" class="control-label"></label>
+                <input asp-for="AnimalMedicalHistory.Date" class="form-control" />
+                <span asp-validation-for="AnimalMedicalHistory.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalMedicalHistory.AnimalMedicalCondtionTypeId" class="control-label"></label>
+                <select asp-for="AnimalMedicalHistory.AnimalMedicalCondtionTypeId" class ="form-control" asp-items="ViewBag.AnimalMedicalCondtionTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalMedicalHistory.AnimalId" class="control-label"></label>
+                <input asp-for="AnimalMedicalHistory.AnimalId" class="form-control" />
+                <span asp-validation-for="AnimalMedicalHistory.AnimalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalMedicalHistory.AnimalAgriSectorId" class="control-label"></label>
+                <input asp-for="AnimalMedicalHistory.AnimalAgriSectorId" class="form-control" />
+                <span asp-validation-for="AnimalMedicalHistory.AnimalAgriSectorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalMedicalHistory.AnimalAnimalTypeId" class="control-label"></label>
+                <input asp-for="AnimalMedicalHistory.AnimalAnimalTypeId" class="form-control" />
+                <span asp-validation-for="AnimalMedicalHistory.AnimalAnimalTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

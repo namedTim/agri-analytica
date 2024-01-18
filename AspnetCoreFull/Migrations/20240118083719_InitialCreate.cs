@@ -15,7 +15,8 @@ namespace AspnetCoreFull.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AspUserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,11 +123,12 @@ namespace AspnetCoreFull.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "varchar(1)", unicode: false, maxLength: 1, nullable: true),
+                    Surname = table.Column<string>(type: "varchar(1)", unicode: false, maxLength: 1, nullable: true),
+                    Email = table.Column<string>(type: "varchar(1)", unicode: false, maxLength: 1, nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
+                    AspUserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {

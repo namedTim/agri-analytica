@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AspnetCoreFull.Data;
 using AspnetCoreFull.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace AspnetCoreFull.Pages.Livestock.Animals
+namespace AspnetCoreFull.Pages.Livestock.Animals.Medical
 {
-  [Authorize]
     public class IndexModel : PageModel
     {
         private readonly AspnetCoreFull.Data.AnalyticaContext _context;
@@ -21,15 +19,14 @@ namespace AspnetCoreFull.Pages.Livestock.Animals
             _context = context;
         }
 
-        public IList<Animal> Animal { get;set; } = default!;
+        public IList<AnimalMedicalHistory> AnimalMedicalHistory { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Animals != null)
+            if (_context.AnimalMedicalHistories != null)
             {
-                Animal = await _context.Animals
-                .Include(a => a.AnimalType)
-                .Include(a => a.Gender).ToListAsync();
+                AnimalMedicalHistory = await _context.AnimalMedicalHistories
+                .Include(a => a.AnimalMedicalCondtionType).ToListAsync();
             }
         }
     }
