@@ -45,9 +45,15 @@
               </a>
             </li>
             <li class='menu-item@(currentPage == "/Livestock/Animals/Progress/Index" ? " active" : "")'>
-                  <a asp-page="/Livestock/Animals/Progress/Index" class="menu-link">
+              <a asp-page="/Livestock/Animals/Progress/Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home"></i>
+                <div data-i18n="Animal progress">Animal progress log</div>
+              </a>
+            </li>
+            <li class='menu-item@(currentPage == "/Livestock/Animals/ProgressType/Index" ? " active" : "")'>
+                  <a asp-page="/Livestock/Animals/ProgressType/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home"></i>
-                    <div data-i18n="Animal progress">Animal progress log</div>
+                    <div data-i18n="Progress types">Progress types</div>
                   </a>
                 </li>
           </ul>

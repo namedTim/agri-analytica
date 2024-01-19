@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-
+<h1>Dashboard</h1>
 <div>
   <div class="row">
     <div class="col-md-6">
@@ -38,7 +38,7 @@
                 data: {
                     labels: Object.keys(animalTypesCount),
                     datasets: [{
-                        label: 'Number of Animals',
+                        label: 'Število živali',
                         data: Object.values(animalTypesCount),
                         backgroundColor: Object.keys(animalTypesCount).map(type => animalTypeColors[type]),
                         borderColor: 'rgba(0, 0, 0, 1)',

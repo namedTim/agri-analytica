@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Livestock\Animals\Medical\" />
+    <Folder Include="Pages\Livestock\Animals\ProgressType\" />
     <Folder Include="Pages\Livestock\Animals\Progress\" />
   </ItemGroup>
 

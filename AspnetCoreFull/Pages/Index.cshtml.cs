@@ -24,16 +24,23 @@ public class IndexModel : PageModel
 
     for (int i = 0; i < count; i++)
     {
-      float ratio = i / (float)(count - 1);
+      double ratio = count > 1 ? (double)i / (count - 1) : 0; // Safely handle division
       int red = (int)(startColor.R * (1 - ratio) + endColor.R * ratio);
       int green = (int)(startColor.G * (1 - ratio) + endColor.G * ratio);
       int blue = (int)(startColor.B * (1 - ratio) + endColor.B * ratio);
+
+      // Clamp values to be safe
+      red = Math.Clamp(red, 0, 255);
+      green = Math.Clamp(green, 0, 255);
+      blue = Math.Clamp(blue, 0, 255);
 
       colorShades.Add(System.Drawing.ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(red, green, blue)));
     }
 
     return colorShades;
   }
+
+
 
 
   public IndexModel(ILogger<IndexModel> logger, AnalyticaContext context, UserManager<IdentityUser> userManager)
