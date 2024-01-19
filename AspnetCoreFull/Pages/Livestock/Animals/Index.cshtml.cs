@@ -8,29 +8,47 @@ using Microsoft.EntityFrameworkCore;
 using AspnetCoreFull.Data;
 using AspnetCoreFull.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace AspnetCoreFull.Pages.Livestock.Animals
 {
   [Authorize]
     public class IndexModel : PageModel
     {
-        private readonly AspnetCoreFull.Data.AnalyticaContext _context;
+        private readonly AnalyticaContext _context;
+        private readonly UserManager<IdentityUser> _userManager; // Add UserManager service
 
-        public IndexModel(AspnetCoreFull.Data.AnalyticaContext context)
+        public IndexModel(AnalyticaContext context, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+          _context = context;
+          _userManager = userManager; // Initialize UserManager
         }
 
         public IList<Animal> Animal { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Animals != null)
-            {
-                Animal = await _context.Animals
-                .Include(a => a.AnimalType)
-                .Include(a => a.Gender).ToListAsync();
-            }
+          var user = await _userManager.GetUserAsync(User); // Get the currently logged in user
+          if (user == null)
+          {
+            Animal = new List<Animal>(); // Or handle the case where there is no logged in user
+            return;
+          }
+
+          // Get the ID of the AgriSectorType with the name "Živinoreja" for the current user
+          var sectorId = await _context.AgriSectorTypes
+            .Where(s => s.AspUserId == user.Id && s.Name == "Živinoreja")
+            .Select(s => s.Id)
+            .FirstOrDefaultAsync();
+
+          if (_context.Animals != null && sectorId != 0)
+          {
+            Animal = await _context.Animals
+              .Where(a => a.AgriSectorId == sectorId)
+              .Include(a => a.AnimalType)
+              .Include(a => a.Gender)
+              .ToListAsync();
+          }
         }
     }
 }

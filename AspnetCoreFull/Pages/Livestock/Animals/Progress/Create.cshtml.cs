@@ -46,7 +46,15 @@ namespace AspnetCoreFull.Pages.Livestock.Animals.Progress
 
           if (Id.HasValue)
           {
-            animals = animals.Where(a => a.Id == 1).ToList();
+            var selectedAnimal = animals.FirstOrDefault(a => a.Id == Id.Value);
+            if (selectedAnimal != null)
+            {
+              // Remove the selected animal from its current position in the list
+              animals.Remove(selectedAnimal);
+
+              // Insert the selected animal at the beginning of the list
+              animals.Insert(0, selectedAnimal);
+            }
           }
 
           ViewData["Animals"] = new SelectList(animals, "Id", "EarTag", ViewData["SelectedAnimalId"]);
