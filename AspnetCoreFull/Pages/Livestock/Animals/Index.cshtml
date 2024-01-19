@@ -44,7 +44,7 @@
                 @Html.DisplayNameFor(model => model.Animal[0].AnimalType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Animal[0].Gender)
+                @Html.DisplayNameFor(model => model.Animal[0].Gender.Name)
             </th>
             <th></th>
         </tr>
@@ -80,16 +80,16 @@
                 @Html.DisplayFor(modelItem => item.ParentMaleId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AnimalType.Id)
+                @Html.DisplayFor(modelItem => item.AnimalType.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gender.Id)
+                @Html.DisplayFor(modelItem => item.Gender.Name)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                <a asp-page="./Progress/Create" asp-route-id="@item.Id">Add progress</a>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-page="./Progress/Create" asp-route-id="@item.Id">Add-progress</a>
             </td>
         </tr>
 }
