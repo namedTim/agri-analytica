@@ -68,13 +68,13 @@
         @Html.DisplayNameFor(model => model.Animal.AnimalType)
       </dt>
       <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Animal.AnimalType.Id)
+        @Html.DisplayFor(model => model.Animal.AnimalType.Name) <!-- Display AnimalType name -->
       </dd>
       <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.Animal.Gender)
       </dt>
       <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Animal.Gender.Id)
+        @Html.DisplayFor(model => model.Animal.Gender.Name) <!-- Display Gender name -->
       </dd>
     </dl>
     <div>
@@ -82,87 +82,85 @@
       <a asp-page="./Index">Back to List</a>
     </div>
     <div class="row">
-            @foreach (var id in @Model.ChartIdentifiers)
-            {
-              <div class="col-md-6">
-                 <canvas id="@($"{id}Chart")"></canvas>
-              </div>
-            }
-        </div>
-
+        @foreach (var id in @Model.ChartIdentifiers)
+        {
+            <div class="col-md-6">
+                <canvas id="@($"{id}Chart")"></canvas>
+            </div>
+        }
+    </div>
 </div>
 
 @section PageScripts {
     <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var chartIdentifiers = @Html.Raw(Json.Serialize(Model.ChartIdentifiers));
-                var chartDataDict = @Html.Raw(Json.Serialize(Model.ChartDataDict));
-                var chartLabels = @Html.Raw(Json.Serialize(Model.Labels));
+        document.addEventListener('DOMContentLoaded', function () {
+            var chartIdentifiers = @Html.Raw(Json.Serialize(Model.ChartIdentifiers));
+            var chartDataDict = @Html.Raw(Json.Serialize(Model.ChartDataDict));
+            var chartLabels = @Html.Raw(Json.Serialize(Model.Labels));
 
-                // Define colors based on theme
-                var isLightMode = document.documentElement.classList.contains('light-style');
-                var textColor = isLightMode ? '#0c4d50' : '#68798c';
-                var ticksColor = isLightMode ? '#0c4d50' : '#a2a3ca';
-                var backgroundColor = isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
-                var borderColor = isLightMode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)';
+            // Define colors based on theme
+            var isLightMode = document.documentElement.classList.contains('light-style');
+            var textColor = isLightMode ? '#0c4d50' : '#68798c';
+            var ticksColor = isLightMode ? '#0c4d50' : '#a2a3ca';
+            var backgroundColor = isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
+            var borderColor = isLightMode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)';
 
-                chartIdentifiers.forEach(function(id) {
-                    var ctx = document.getElementById(id + 'Chart').getContext('2d');
-                    var chartData = chartDataDict[id];
+            chartIdentifiers.forEach(function(id) {
+                var ctx = document.getElementById(id + 'Chart').getContext('2d');
+                var chartData = chartDataDict[id];
 
-                    var myChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: chartLabels,
-                            datasets: [{
-                                label: id.charAt(0).toUpperCase() + id.slice(1),
-                                data: chartData,
-                                backgroundColor: "rgb(12,77,80)",
-                                borderColor: "#78933b",
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            plugins: {
-                                legend: {
-                                    labels: {
-                                        color: ticksColor // Change legend text color
-                                    }
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function(context) {
-                                            let value = context.raw;
-                                            return value.toFixed(1); // Format tooltip values to 1 decimal place
-                                        }
-                                    }
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: id.charAt(0).toUpperCase() + id.slice(1),
+                            data: chartData,
+                            backgroundColor: "rgb(12,77,80)",
+                            borderColor: "#78933b",
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: ticksColor // Change legend text color
                                 }
                             },
-                            scales: {
-                                x: {
-                                    ticks: {
-                                        color: ticksColor // Change tick color on the x-axis
-                                    },
-                                    grid: {
-                                        color: textColor // Change grid line color on the x-axis
-                                    }
-                                },
-                                y: {
-                                    ticks: {
-                                        color: ticksColor, // Change tick color on the y-axis
-                                        callback: function(value) {
-                                            return value.toFixed(1); // Format tick values to 1 decimal place
-                                        }
-                                    },
-                                    grid: {
-                                        color: textColor // Change grid line color on the y-axis
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let value = context.raw;
+                                        return value.toFixed(1); // Format tooltip values to 1 decimal place
                                     }
                                 }
                             }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: ticksColor // Change tick color on the x-axis
+                                },
+                                grid: {
+                                    color: textColor // Change grid line color on the x-axis
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: ticksColor, // Change tick color on the y-axis
+                                    callback: function(value) {
+                                        return value.toFixed(1); // Format tick values to 1 decimal place
+                                    }
+                                },
+                                grid: {
+                                    color: textColor // Change grid line color on the y-axis
+                                }
+                            }
                         }
-                    });
+                    }
                 });
             });
-
-        </script>
+        });
+    </script>
 }
