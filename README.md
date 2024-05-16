@@ -45,6 +45,11 @@ Aplikacija podpira beleženje podatkov o živalih in njihovi statistiki. Podprt 
 
 Zraven spadajo še interne tabele za prijavo preko Identity.
 
+### 2.3 Izgled
+![slika](https://github.com/namedTim/agri-analytica/assets/46692491/6a2d0041-86d1-431e-a5d5-aa17d62971ca)
+![slika](https://github.com/namedTim/agri-analytica/assets/46692491/82b9391b-8ee1-464e-a5dc-f25d4f1c58af)
+
+
 
 ---
 
