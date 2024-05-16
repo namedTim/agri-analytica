@@ -10,17 +10,18 @@ builder.Services.AddRazorPages();
 
 // Configure DbContext
 builder.Services.AddDbContext<AnalyticaContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("AnalyticaContext") ??
-                       throw new InvalidOperationException("Connection string 'AnalyticaContext' not found.")));
+    options.UseMySql(builder.Configuration.GetConnectionString("AnalyticaContext") ??
+                     throw new InvalidOperationException("Connection string 'AnalyticaContext' not found."),
+                     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("AnalyticaContext"))));
 
 // Configure Identity
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-  .AddEntityFrameworkStores<AnalyticaContext>();
+    .AddEntityFrameworkStores<AnalyticaContext>();
 
 // Configure login path
 builder.Services.ConfigureApplicationCookie(options =>
 {
-  options.LoginPath = "/Auth/Login/Cover";
+    options.LoginPath = "/Auth/Login/Cover";
 });
 
 // Add helper service
@@ -37,13 +38,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-  app.UseExceptionHandler("/Error");
-  app.UseHsts();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
 }
 else
 {
-  app.UseDeveloperExceptionPage();
-  app.UseMigrationsEndPoint();
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
 }
 
 app.UseHttpsRedirection();
@@ -53,7 +54,7 @@ app.UseStaticFiles();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-  c.SwaggerEndpoint("/swagger/v1/swagger.json", "Agri-analytica API v1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Agri-analytica API v1");
 });
 
 app.UseRouting();
@@ -64,8 +65,8 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-  endpoints.MapControllers(); // Maps routes to controllers
-  // For MVC or Razor Pages, you might also have endpoints.MapRazorPages();
+    endpoints.MapControllers(); // Maps routes to controllers
+    // For MVC or Razor Pages, you might also have endpoints.MapRazorPages();
 });
 
 app.MapRazorPages();

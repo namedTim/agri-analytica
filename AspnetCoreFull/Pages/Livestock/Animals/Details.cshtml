@@ -123,13 +123,21 @@
                             }]
                         },
                         options: {
-                          plugins: {
-                                  legend: {
-                                      labels: {
-                                          color: ticksColor // Change legend text color
-                                      }
-                                  }
-                              },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: ticksColor // Change legend text color
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            let value = context.raw;
+                                            return value.toFixed(1); // Format tooltip values to 1 decimal place
+                                        }
+                                    }
+                                }
+                            },
                             scales: {
                                 x: {
                                     ticks: {
@@ -141,18 +149,20 @@
                                 },
                                 y: {
                                     ticks: {
-                                        color: ticksColor // Change tick color on the y-axis
+                                        color: ticksColor, // Change tick color on the y-axis
+                                        callback: function(value) {
+                                            return value.toFixed(1); // Format tick values to 1 decimal place
+                                        }
                                     },
                                     grid: {
                                         color: textColor // Change grid line color on the y-axis
                                     }
                                 }
-                            },
-                            // ... other options ...
+                            }
                         }
-
                     });
                 });
             });
+
         </script>
 }
